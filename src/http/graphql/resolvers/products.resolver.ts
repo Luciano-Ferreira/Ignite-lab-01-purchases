@@ -2,7 +2,7 @@ import { Query, Resolver } from '@nestjs/graphql';
 import { PrismaService } from 'src/database/prisma/prisma.service';
 
 @Resolver()
-export class TestResolver {
+export class ProductsResolver {
   constructor(private prisma: PrismaService) {}
 
   @Query(() => String)
