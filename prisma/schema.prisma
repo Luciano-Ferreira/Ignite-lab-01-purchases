@@ -19,10 +19,11 @@ model Customer {
 model Product {
   id String @id @default(uuid())
 
-  purchasedOn Purchase[]
 
   title String
   slug  String @unique
+
+  purchasedOn Purchase[]
 
 
   createdAt DateTime @default(now())
