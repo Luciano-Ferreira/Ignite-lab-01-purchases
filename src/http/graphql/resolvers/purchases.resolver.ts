@@ -6,7 +6,7 @@ import { AuthorizationGuard } from '../../auth/authorization.guard';
 import { Product } from '../models/product';
 import { Purchase } from '../models/purchase';
 
-@Resolver()
+@Resolver(() => Purchase)
 export class PurchasesResolver {
   constructor(
     private purchasesService: PurchasesService,
@@ -17,5 +17,10 @@ export class PurchasesResolver {
   @UseGuards(AuthorizationGuard)
   purchases() {
     return this.purchasesService.listAllPurchases();
+  }
+
+  @ResolveField(() => Product)
+  product(@Parent() purchase: Purchase) {
+    return this.productsService.getProductById(purchase.productId);
   }
 }
