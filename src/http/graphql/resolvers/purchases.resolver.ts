@@ -13,7 +13,7 @@ import { AuthorizationGuard } from '../../auth/authorization.guard';
 import { Product } from '../models/product';
 import { Purchase } from '../models/purchase';
 import { CreatePurchaseInput } from '../inputs/create-purchase-input';
-import { CurrentUser } from '../../auth/current-user';
+import { AuthUser, CurrentUser } from '../../auth/current-user';
 
 @Resolver(() => Purchase)
 export class PurchasesResolver {
@@ -35,7 +35,10 @@ export class PurchasesResolver {
 
   @Mutation(() => Purchase)
   @UseGuards(AuthorizationGuard)
-  createPurchase(@Args('data') data: CreatePurchaseInput, @CurrentUser() user) {
+  createPurchase(
+    @Args('data') data: CreatePurchaseInput,
+    @CurrentUser() user: AuthUser,
+  ) {
     return null;
   }
 }
